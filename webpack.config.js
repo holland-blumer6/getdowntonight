@@ -1,6 +1,9 @@
 const env = process.env.NODE_ENV || 'development';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ESLintPlugin = require('eslint-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const finalCSSLoader = (env === 'production') ? MiniCssExtractPlugin.loader : { loader: 'style-loader' };
 
 module.exports = {
   mode: env,
@@ -15,9 +18,30 @@ module.exports = {
           { loader: 'babel-loader' },
         ],
       },
+      {
+        test: /\.s?css/,
+        use: [
+          finalCSSLoader,
+          {
+            loader: 'css-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: true,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: '[name].css',
+    }),
     new HtmlWebpackPlugin({
       template: './src/html/index.html',
       filename: './index.html',

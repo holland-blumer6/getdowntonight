@@ -1,4 +1,5 @@
 import $ from 'jquery';
+import '../css/style.scss';
 
 let seconds = 0;
 
