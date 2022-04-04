@@ -1,5 +1,7 @@
 const env = process.env.NODE_ENV || 'development';
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const autoprefixer = require('autoprefixer');
+const postcssPresets = require('postcss-preset-env');
 const ESLintPlugin = require('eslint-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -29,6 +31,19 @@ module.exports = {
             loader: 'css-loader',
             options: {
               sourceMap: true,
+            },
+          },
+          {
+            loader: 'postcss-loader',
+            ident: 'postcss',
+            options: {
+              sourceMap: true,
+              postcssOptions: {
+                plugins: [
+                  autoprefixer(),
+                  postcssPresets({ browsers: 'last 2 versions' }),
+                ],
+              },
             },
           },
           {
