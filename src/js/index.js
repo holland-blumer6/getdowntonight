@@ -1,11 +1,9 @@
-import $ from 'jquery';
+import React from 'react';
+import ReactDOM from 'react-dom';
 import '../css/style.scss';
 
-let seconds = 0;
-
-function countTime() {
-  $('#main').html(`You've been here for ${seconds} seconds`);
-  seconds += 1;
+function App() {
+  return <div className="test">All the REACT are belong to us!</div>;
 }
 
-setInterval(countTime, 1000);
+ReactDOM.render(<App />, document.getElementById('main'));
