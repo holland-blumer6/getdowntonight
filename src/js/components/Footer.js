@@ -1,12 +1,9 @@
-/* eslint-disable react/prefer-stateless-function */
-import React, { Component } from 'react';
+import React from 'react';
 
-class Footer extends Component {
-  render() {
-    return (
-      <h1>Hello</h1>
-    );
-  }
+function Footer() {
+  return (
+    <h1>Footer</h1>
+  );
 }
 
 export default Footer;
